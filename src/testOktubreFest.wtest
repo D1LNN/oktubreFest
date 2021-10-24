@@ -8,7 +8,7 @@ describe "Requerimiento 1" {
 	const stella = new CervezaRubia(contenidoDeLupulo = 20, paisDeOrigen = "Belga", graduacion = 10)
 	const jarraLoca = new Jarra(capacidadEnLitros = 1, marca = brahma)
 	const jarra2 = new Jarra(capacidadEnLitros = 1, marca = stella)
-	const pedro = new Persona(peso = 60, jarrasCompradas = [ jarraLoca, jarra2 ], leGustaMusicaTradicional = false, nivelDeAguante = 10)
+	const pedro = new PersonaCheca(peso = 60, jarrasCompradas = [ jarraLoca, jarra2 ], leGustaMusicaTradicional = false, nivelDeAguante = 10)
 	const belga = new PersonaBelga(peso = 90, jarrasCompradas = [ jarra2 ], leGustaMusicaTradicional = true, nivelDeAguante = 20)
 
 	test "Contenido de alcohol" {
