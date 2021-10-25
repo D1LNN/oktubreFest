@@ -33,11 +33,17 @@ class Persona {
 	method jarrasNoCompatibles(otraPersona) = self.jarrasCompradas().asSet().difference(otraPersona.jarrasCompradas().asSet())
 
 	method carpasDondeComproCerveza() = jarrasCompradas.map({ jarra => jarra.carpaDondeSeSirvio() }).asSet()
+	
+	method gastoTotal() = jarrasCompradas.sum({ jarra =>  jarra.carpaDondeSeSirvio().precioDeVentaPorJarra(jarra) })
+	
+	method posiciones() = (1..jarrasCompradas.size() - 1)	// (1..3)
+	
+	method estaEntrandoEnVicio() = self.posiciones().all({ pos => jarrasCompradas.get(pos).capacidadEnLitros() >= jarrasCompradas.get(pos - 1).capacidadEnLitros() })
 
 }
 
 class PersonaBelga inherits Persona {
-
+	
 	override method leGustaMarca(marca) {
 		return marca.contenidoDeLupulo() > 4
 	}

@@ -4,32 +4,61 @@ import Personas.*
 
 describe "Requerimiento 1" {
 
-	const brahma = new CervezaRubia(contenidoDeLupulo = 4, paisDeOrigen = "Argentina", graduacion = 8)
-	const stella = new CervezaRubia(contenidoDeLupulo = 20, paisDeOrigen = "Belga", graduacion = 10)
-	const jarraLoca = new Jarra(capacidadEnLitros = 1, marca = brahma)
-	const jarra2 = new Jarra(capacidadEnLitros = 1, marca = stella)
-	const pedro = new PersonaCheca(peso = 60, jarrasCompradas = [ jarraLoca, jarra2 ], leGustaMusicaTradicional = false, nivelDeAguante = 10)
-	const belga = new PersonaBelga(peso = 90, jarrasCompradas = [ jarra2 ], leGustaMusicaTradicional = true, nivelDeAguante = 20)
+	const brahma = new CervezaRubia(contenidoDeLupulo = 4, paisDeOrigen = "Brasil", graduacion = 2, precioPorLitro = 180)
+	const quilmesStout = new CervezaNegra(contenidoDeLupulo = 8, paisDeOrigen = "Argentina", graduacion = 9, precioPorLitro = 200)
+	const carpaBramha = new CarpaCervecera(limiteDeAdmicion = 2, tieneBandaDeMusica = false, marcaQueVende = brahma, personasDentro = [], tipoDeRecargo = new RecargoPorCantidad())
+	const carpaQuilmes = new CarpaCervecera(limiteDeAdmicion = 3, tieneBandaDeMusica = true, marcaQueVende = quilmesStout, personasDentro = [], tipoDeRecargo = new RecargoPorEbriedad())
+	const jarraDeBrahma = new Jarra(capacidadEnLitros = 1, carpaDondeSeSirvio = carpaBramha)
+	const jarraDeQuilmes = new Jarra(capacidadEnLitros = 0.5, carpaDondeSeSirvio = carpaQuilmes)
+	const bruno = new PersonaAlemana(peso = 80, jarrasCompradas = [ jarraDeBrahma, jarraDeQuilmes ], leGustaMusicaTradicional = true, nivelDeAguante = 3, nacionalidad = "Alemana")
+	const dilan = new PersonaCheca(peso = 54, jarrasCompradas = [ jarraDeBrahma ], leGustaMusicaTradicional = true, nivelDeAguante = 2, nacionalidad = "Checa")
+	const georgi = new PersonaBelga(peso = 50, jarrasCompradas = [ jarraDeQuilmes ], leGustaMusicaTradicional = false, nivelDeAguante = 2.5, nacionalidad = "Belga")
 
-	test "Contenido de alcohol" {
-		assert.equals(0.08, jarraLoca.contenidoDeAlcohol())
+	test "Contenido de alcohol Brahma" {
+		assert.equals(0.02, jarraDeBrahma.contenidoDeAlcohol())
 	}
 
-	test "Total de alcohol" {
-		assert.equals(0.18, pedro.alcoholIngerido())
+	test "Contenido de alcohol Quilmes" {
+		assert.equals(0.025, jarraDeQuilmes.contenidoDeAlcohol())
 	}
 
-	test "Pedro esta borracho" {
-		assert.that(pedro.estaEbrio())
+	test "Total de alcohol ingerido por Bruno" {
+		assert.equals(0.045, bruno.alcoholIngerido())
 	}
 
-	test "A pedro le gusta la cerveza" {
-		assert.notThat(pedro.leGustaMarca(brahma))
-		assert.that(pedro.leGustaMarca(stella))
+	test "Total de alcohol ingerido por Dilan" {
+		assert.equals(0.02, dilan.alcoholIngerido())
 	}
 
-	test "Belga le gusta la stella" {
-		assert.that(belga.leGustaMarca(stella))
+	test "Total de alcohol ingerido por Georgi" {
+		assert.equals(0.025, georgi.alcoholIngerido())
+	}
+
+	test "Bruno esta borracho" {
+		assert.that(bruno.estaEbrio())
+	}
+
+	test "Dilan esta borracho" {
+		assert.notThat(dilan.estaEbrio())
+	}
+
+	test "Georgi esta borracho" {
+		assert.notThat(georgi.estaEbrio())
+	}
+
+	test "A Bruno le gusta la cerveza" {
+		assert.that(bruno.leGustaMarca(brahma))
+		assert.that(bruno.leGustaMarca(quilmesStout))
+	}
+
+	test "A Dilan le gusta la cerveza" {
+		assert.notThat(dilan.leGustaMarca(brahma))
+		assert.notThat(dilan.leGustaMarca(quilmesStout))
+	}
+
+	test "A Georgi le gusta la cerveza" {
+		assert.notThat(georgi.leGustaMarca(brahma))
+		assert.that(georgi.leGustaMarca(quilmesStout))
 	}
 
 }

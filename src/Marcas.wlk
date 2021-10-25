@@ -1,11 +1,12 @@
 object graduacionReglamentaria {
-	var property graduacion = 0 
+	var property graduacion = 5 
 }
 
 class Marca {
 	var property contenidoDeLupulo = 0
 	const property paisDeOrigen = null
 	var property graduacion = 0
+	var property precioPorLitro = 0
 	
 }
 
@@ -31,5 +32,7 @@ class Jarra {
 	method marca() = carpaDondeSeSirvio.marcaQueVende()
 	
 	method contenidoDeAlcohol() = capacidadEnLitros * (self.marca().graduacion() / 100)
+	
+	method precioDeCosto() = self.marca().precioPorLitro() * capacidadEnLitros
 }
 
