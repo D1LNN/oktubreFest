@@ -1,3 +1,10 @@
+![logo.jpg](396b3a8f-b87d-4a2b-b01d-28582abfddc7.jpg)
+
+Grupo: compuMundoHiperMegaRed
+
+Integrantes: Bruno Luques, Georgina Roldan, Dilan Avila
+
+
 # Oktubre Fest
 
 [Ein Prosit!](https://www.youtube.com/watch?v=DNxE5NQXLM4)
